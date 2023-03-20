@@ -135,11 +135,11 @@ export default function Home() {
                             <p>2018</p>
                             <p>
                                 <span className="relative -top-[3.5px]">⌜</span>아무렇게나 춤춰 아무렇지 않아 보이게
-                                아무 생각 하기 싫어 아무개로 살래 잠시 I'm sick and tired⌟
+                                아무 생각 하기 싫어 아무개로 살래 잠시 im sick and tired⌟
                             </p>
                             <p>
                                 <span className="relative -top-[3.5px]">⌜</span>of my every day, keep it up 한 곡 더
-                                아무 노래나 일단 틀어 아무렴 어때 it's so boring 아무래도⌟
+                                아무 노래나 일단 틀어 아무렴 어때 its so boring 아무래도⌟
                             </p>
                         </div>
                         <div className="flex flex-col gap-[10px] text-center">
