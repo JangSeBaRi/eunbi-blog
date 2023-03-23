@@ -64,15 +64,22 @@ export default function Home() {
         var desktopFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
             mobileFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
             app = "vnd.youtube://4KnNVK-udTU";
+        const w = window as Window;
 
         if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            window.open(app)
-            // window.setTimeout(function () {
-            //     window.location = mobileFallback;
-            // }, 25);
+            w.location = app;
+            w.setTimeout(function () {
+                w.location = mobileFallback;
+            }, 25);
         } else {
-            window.open(desktopFallback)
+            w.location = desktopFallback;
         }
+
+        function killPopup() {
+            w.removeEventListener("pagehide", killPopup);
+        }
+
+        w.addEventListener("pagehide", killPopup);
 
         // // 앱이 설치 되어있는지 체크
         // schInterval = setInterval(intervalSch, 500);
