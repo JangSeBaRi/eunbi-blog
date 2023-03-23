@@ -14,6 +14,69 @@ import GroupIcon from "@mui/icons-material/Group";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+    const [os, setOs] = useState<string>("");
+
+    useEffect(() => {
+        const mobile = /iphone|ipad|ipod|android/i.test(navigator.userAgent.toLowerCase());
+
+        if (mobile) {
+            var userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.search("android") > -1) {
+                setOs("android");
+            } else if (
+                userAgent.search("iphone") > -1 ||
+                userAgent.search("ipod") > -1 ||
+                userAgent.search("ipad") > -1
+            ) {
+                setOs("ios");
+            } else {
+                setOs("otehr");
+            }
+        } else {
+            setOs("pc");
+        }
+    }, []);
+
+    if (os == "pc") {
+        location.href = "웹주소 입력";
+    }
+
+    let launchAppUrl = "twitter://twitter";
+    let timer: any;
+    let schInterval: any;
+
+    function participate() {
+        function clearTimer() {
+            clearInterval(schInterval);
+            clearTimeout(timer);
+        }
+        function intervalSch() {
+            // 매 인터벌 마다 웹뷰가 활성화 인지 체크
+            if (document.webkitHidden || document.hidden) {
+                // 웹뷰 비활성화
+                clearTimer(); // 앱이 설치되어있을 경우 타이머 제거
+            } else {
+                // 웹뷰 활성화
+                console.log("타이머 동작");
+            }
+        }
+
+        // 앱 실행(iOS인 경우)
+        location.href = launchAppUrl;
+
+        // 앱이 설치 되어있는지 체크
+        schInterval = setInterval(intervalSch, 500);
+
+        timer = setTimeout(function () {
+            if (os === 'android') {
+                location.href = "https://play.google.com/store/apps/details?id=com.twitter.android&hl=ko";
+            } else if (os === 'ios') {
+                location.href = "https://apps.apple.com/kr/app/twitter/id1482454543";
+            }
+            clearInterval(schInterval);
+        }, 2000);
+    }
+
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const categoryList = [
         {
@@ -24,17 +87,32 @@ export default function Home() {
         {
             id: "publish",
             label: "웅 출판사",
-            icon: <CorporateFareIcon fontSize="small" className=" group-hover:text-blue-700 text-stone-700"></CorporateFareIcon>,
+            icon: (
+                <CorporateFareIcon
+                    fontSize="small"
+                    className=" group-hover:text-blue-700 text-stone-700"
+                ></CorporateFareIcon>
+            ),
         },
         {
             id: "book",
             label: "책",
-            icon: <AutoStoriesIcon fontSize="small" className=" group-hover:text-blue-700 text-stone-700"></AutoStoriesIcon>,
+            icon: (
+                <AutoStoriesIcon
+                    fontSize="small"
+                    className=" group-hover:text-blue-700 text-stone-700"
+                ></AutoStoriesIcon>
+            ),
         },
         {
             id: "daily",
             label: "일간 웅비",
-            icon: <SubscriptionsIcon fontSize="small" className=" group-hover:text-blue-700 text-stone-700"></SubscriptionsIcon>,
+            icon: (
+                <SubscriptionsIcon
+                    fontSize="small"
+                    className=" group-hover:text-blue-700 text-stone-700"
+                ></SubscriptionsIcon>
+            ),
         },
         {
             id: "report",
@@ -74,7 +152,7 @@ export default function Home() {
     const snsList2 = [
         {
             id: "facebook",
-            icon: <FacebookIcon className="hover:text-blue-600 cursor-pointer" fontSize="large"></FacebookIcon>,
+            icon: <FacebookIcon className="hover:text-blue-600 cursor-pointer" fontSize="large" onClick={participate}></FacebookIcon>,
         },
         {
             id: "instagram",
@@ -301,7 +379,9 @@ export default function Home() {
                                     <li key={id} className="pr-2">
                                         <button className="flex items-center py-3 pl-7 w-full rounded-r-full hover:bg-blue-50 group">
                                             {icon}
-                                            <span className="ml-6 text-sm text-stone-700 font-semibold group-hover:text-blue-700">{label}</span>
+                                            <span className="ml-6 text-sm text-stone-700 font-semibold group-hover:text-blue-700">
+                                                {label}
+                                            </span>
                                         </button>
                                     </li>
                                 );
