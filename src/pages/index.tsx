@@ -41,7 +41,8 @@ export default function Home() {
     let schInterval: any;
 
     function participate() {
-        window.open("youtube://www.youtube.com", '_blank')
+        location.href = "youtube://4KnNVK-udTU"
+        // window.open("youtube://4KnNVK-udTU", '_blank')
         // if (os == "pc") {
         //     // location.href = "웹주소 입력";
         //     console.log('web')
