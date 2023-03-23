@@ -37,44 +37,54 @@ export default function Home() {
         }
     }, []);
 
-    if (os == "pc") {
-        location.href = "웹주소 입력";
-    }
-
-    let launchAppUrl = "twitter://twitter";
     let timer: any;
     let schInterval: any;
 
     function participate() {
-        function clearTimer() {
-            clearInterval(schInterval);
-            clearTimeout(timer);
+        // if (os == "pc") {
+        //     // location.href = "웹주소 입력";
+        //     console.log('web')
+        // }
+        // function clearTimer() {
+        //     clearInterval(schInterval);
+        //     clearTimeout(timer);
+        // }
+        // function intervalSch() {
+        //     // 매 인터벌 마다 웹뷰가 활성화 인지 체크
+        //     if (document.hidden || (document as any).webkitHidden) {
+        //         // 웹뷰 비활성화
+        //         clearTimer(); // 앱이 설치되어있을 경우 타이머 제거
+        //     } else {
+        //         // 웹뷰 활성화
+        //         console.log("타이머 동작");
+        //     }
+        // }
+
+        // // 앱 실행(iOS인 경우)
+        var desktopFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
+            mobileFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
+            app = "vnd.youtube://4KnNVK-udTU";
+
+        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            window.open(app)
+            // window.setTimeout(function () {
+            //     window.location = mobileFallback;
+            // }, 25);
+        } else {
+            window.open(desktopFallback)
         }
-        function intervalSch() {
-            // 매 인터벌 마다 웹뷰가 활성화 인지 체크
-            if (document.hidden || (document as any).webkitHidden) {
-                // 웹뷰 비활성화
-                clearTimer(); // 앱이 설치되어있을 경우 타이머 제거
-            } else {
-                // 웹뷰 활성화
-                console.log("타이머 동작");
-            }
-        }
 
-        // 앱 실행(iOS인 경우)
-        location.href = launchAppUrl;
+        // // 앱이 설치 되어있는지 체크
+        // schInterval = setInterval(intervalSch, 500);
 
-        // 앱이 설치 되어있는지 체크
-        schInterval = setInterval(intervalSch, 500);
-
-        timer = setTimeout(function () {
-            if (os === "android") {
-                location.href = "https://play.google.com/store/apps/details?id=com.twitter.android&hl=ko";
-            } else if (os === "ios") {
-                location.href = "https://apps.apple.com/kr/app/twitter/id1482454543";
-            }
-            clearInterval(schInterval);
-        }, 2000);
+        // timer = setTimeout(function () {
+        //     if (os === "android") {
+        //         location.href = "https://play.google.com/store/apps/details?id=com.twitter.android&hl=ko";
+        //     } else if (os === "ios") {
+        //         location.href = "https://apps.apple.com/kr/app/twitter/id1482454543";
+        //     }
+        //     clearInterval(schInterval);
+        // }, 2000);
     }
 
     const [openMenu, setOpenMenu] = useState<boolean>(false);
