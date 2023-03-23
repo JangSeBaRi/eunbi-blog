@@ -52,7 +52,7 @@ export default function Home() {
         }
         function intervalSch() {
             // 매 인터벌 마다 웹뷰가 활성화 인지 체크
-            if (document.webkitHidden || document.hidden) {
+            if (document.hidden || (document as any).webkitHidden) {
                 // 웹뷰 비활성화
                 clearTimer(); // 앱이 설치되어있을 경우 타이머 제거
             } else {
@@ -68,9 +68,9 @@ export default function Home() {
         schInterval = setInterval(intervalSch, 500);
 
         timer = setTimeout(function () {
-            if (os === 'android') {
+            if (os === "android") {
                 location.href = "https://play.google.com/store/apps/details?id=com.twitter.android&hl=ko";
-            } else if (os === 'ios') {
+            } else if (os === "ios") {
                 location.href = "https://apps.apple.com/kr/app/twitter/id1482454543";
             }
             clearInterval(schInterval);
@@ -152,7 +152,13 @@ export default function Home() {
     const snsList2 = [
         {
             id: "facebook",
-            icon: <FacebookIcon className="hover:text-blue-600 cursor-pointer" fontSize="large" onClick={participate}></FacebookIcon>,
+            icon: (
+                <FacebookIcon
+                    className="hover:text-blue-600 cursor-pointer"
+                    fontSize="large"
+                    onClick={participate}
+                ></FacebookIcon>
+            ),
         },
         {
             id: "instagram",
