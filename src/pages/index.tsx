@@ -14,7 +14,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-    const [openMenu, setOpenMenu] = useState<boolean>(true);
+    const [openMenu, setOpenMenu] = useState<boolean>(false);
     const categoryList = [
         {
             id: "home",
