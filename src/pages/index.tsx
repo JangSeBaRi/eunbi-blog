@@ -41,6 +41,7 @@ export default function Home() {
     let schInterval: any;
 
     function participate() {
+        window.open("youtube://www.youtube.com", '_blank')
         // if (os == "pc") {
         //     // location.href = "웹주소 입력";
         //     console.log('web')
@@ -61,25 +62,25 @@ export default function Home() {
         // }
 
         // // 앱 실행(iOS인 경우)
-        var desktopFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
-            mobileFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
-            app = "vnd.youtube://4KnNVK-udTU";
-        const w = window as Window;
+        // var desktopFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
+        //     mobileFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
+        //     app = "vnd.youtube://4KnNVK-udTU";
+        // const w = window as Window;
 
-        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            w.location = app;
-            w.setTimeout(function () {
-                w.location = mobileFallback;
-            }, 25);
-        } else {
-            w.location = desktopFallback;
-        }
+        // if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        //     w.location = app;
+        //     w.setTimeout(function () {
+        //         w.location = mobileFallback;
+        //     }, 25);
+        // } else {
+        //     w.location = desktopFallback;
+        // }
 
-        function killPopup() {
-            w.removeEventListener("pagehide", killPopup);
-        }
+        // function killPopup() {
+        //     w.removeEventListener("pagehide", killPopup);
+        // }
 
-        w.addEventListener("pagehide", killPopup);
+        // w.addEventListener("pagehide", killPopup);
 
         // // 앱이 설치 되어있는지 체크
         // schInterval = setInterval(intervalSch, 500);
